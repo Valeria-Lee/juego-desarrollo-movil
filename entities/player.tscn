@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwo6pal7tt88s"]
+
+[ext_resource type="Script" uid="uid://cl0hbicww6j3r" path="res://scripts/entities/player.gd" id="1_b0kkn"]
+[ext_resource type="Texture2D" uid="uid://cbqcgtj08cer8" path="res://assets/art/sprites/player/player.png" id="1_merdl"]
+[ext_resource type="Texture2D" uid="uid://15e37rtwerr8" path="res://assets/art/sprites/player/walking_particles.png" id="3_e4p34"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0kkn"]
+size = Vector2(6, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4p34"]
+atlas = ExtResource("3_e4p34")
+region = Rect2(4, 0, 4, 4)
+
+[sub_resource type="Curve" id="Curve_rfe5m"]
+_data = [Vector2(0.14534885, 0.6516854), 0.0, 0.0, 0, 0, Vector2(1, 0.29213488), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_qly61"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.36862746)
+
+[sub_resource type="Animation" id="Animation_e4p34"]
+resource_name = "walking"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.34906584, 0.0, -0.34906584, 0.0, 0.34906584]
+}
+
+[sub_resource type="Animation" id="Animation_rfe5m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qly61"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1), Vector2(1.2, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qly61"]
+_data = {
+&"RESET": SubResource("Animation_rfe5m"),
+&"idle": SubResource("Animation_qly61"),
+&"walking": SubResource("Animation_e4p34")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_b0kkn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 72
+limit_bottom = 72
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_merdl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -0.5)
+shape = SubResource("RectangleShape2D_b0kkn")
+
+[node name="WalkingParticles" type="CPUParticles2D" parent="."]
+emitting = false
+texture = SubResource("AtlasTexture_e4p34")
+randomness = 0.6
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(5, 7)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -10)
+scale_amount_curve = SubResource("Curve_rfe5m")
+color_ramp = SubResource("Gradient_qly61")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qly61")
+}

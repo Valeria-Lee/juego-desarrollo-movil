@@ -1,9 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpqxwwo3vb3s3"]
+[gd_scene load_steps=3 format=3 uid="uid://bpqxwwo3vb3s3"]
 
-[ext_resource type="Texture2D" uid="uid://cbqcgtj08cer8" path="res://assets/art/sprites/player/player.png" id="1_g7g4h"]
+[ext_resource type="PackedScene" uid="uid://bwo6pal7tt88s" path="res://entities/player.tscn" id="1_g7g4h"]
+[ext_resource type="Script" uid="uid://bi0txwcfpdm2s" path="res://scripts/test_scene.gd" id="1_j8ivh"]
 
-[node name="Node2D" type="Node2D"]
+[node name="TestScene" type="Node2D"]
+script = ExtResource("1_j8ivh")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(13, 43)
-texture = ExtResource("1_g7g4h")
+[node name="ZoneBounds" type="StaticBody2D" parent="."]
+position = Vector2(36, 36)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ZoneBounds"]
+polygon = PackedVector2Array(-36, -36, 36, -36, 36, 35, -36, 35, -36, 3, -46, 3, -46, 44, 45, 44, 45, -46, -46, -46, -46, 3, -36, 3)
+
+[node name="Player" parent="." instance=ExtResource("1_g7g4h")]
+position = Vector2(36, 36)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
