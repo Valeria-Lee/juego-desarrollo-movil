@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bwo6pal7tt88s"]
 
-[ext_resource type="Script" uid="uid://cl0hbicww6j3r" path="res://scripts/entities/player.gd" id="1_b0kkn"]
+[ext_resource type="Script" uid="uid://cl0hbicww6j3r" path="res://scripts/entities/Player.gd" id="1_b0kkn"]
 [ext_resource type="Texture2D" uid="uid://cbqcgtj08cer8" path="res://assets/art/sprites/player/player.png" id="1_merdl"]
 [ext_resource type="Texture2D" uid="uid://15e37rtwerr8" path="res://assets/art/sprites/player/walking_particles.png" id="3_e4p34"]
 
@@ -17,21 +17,6 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_qly61"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.36862746)
-
-[sub_resource type="Animation" id="Animation_e4p34"]
-resource_name = "walking"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.34906584, 0.0, -0.34906584, 0.0, 0.34906584]
-}
 
 [sub_resource type="Animation" id="Animation_rfe5m"]
 length = 0.001
@@ -62,6 +47,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_qly61"]
 resource_name = "idle"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -72,7 +58,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1), Vector2(1.2, 1), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1), Vector2(1.1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e4p34"]
+resource_name = "walking"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.34906584, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qly61"]

@@ -15,6 +15,10 @@ run/main_scene="uid://bpqxwwo3vb3s3"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+InventoryManager="*res://scripts/core/InventoryManager.gd"
+
 [display]
 
 window/size/viewport_width=72

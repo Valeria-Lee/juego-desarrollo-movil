@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cu0l173wtexx3"]
+
+[ext_resource type="Script" uid="uid://qfmo8wwr2gdt" path="res://scripts/systems/inventory/ItemData.gd" id="1_3awaq"]
+[ext_resource type="Texture2D" uid="uid://dpo8kmnrtutl8" path="res://assets/art/sprites/ingredients/meat.png" id="2_v48eq"]
+
+[resource]
+script = ExtResource("1_3awaq")
+item_name = "meat"
+description = "meat for the burger"
+texture = ExtResource("2_v48eq")
+stackable = true
+metadata/_custom_type_script = "uid://qfmo8wwr2gdt"

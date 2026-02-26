@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpqxwwo3vb3s3"]
+[gd_scene load_steps=6 format=3 uid="uid://bpqxwwo3vb3s3"]
 
 [ext_resource type="PackedScene" uid="uid://bwo6pal7tt88s" path="res://entities/player.tscn" id="1_g7g4h"]
 [ext_resource type="Script" uid="uid://bi0txwcfpdm2s" path="res://scripts/test_scene.gd" id="1_j8ivh"]
+[ext_resource type="Resource" uid="uid://0el2t4ex0a47" path="res://scripts/systems/inventory/player_inventory.tres" id="3_7ddre"]
+[ext_resource type="Resource" uid="uid://cu0l173wtexx3" path="res://scripts/systems/inventory/items/meat.tres" id="3_nd71p"]
+[ext_resource type="PackedScene" uid="uid://pn0wtmf3t46e" path="res://resources/rock.tscn" id="5_qjeyg"]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_j8ivh")
@@ -14,5 +17,10 @@ polygon = PackedVector2Array(-36, -36, 36, -36, 36, 35, -36, 35, -36, 3, -46, 3,
 
 [node name="Player" parent="." instance=ExtResource("1_g7g4h")]
 position = Vector2(36, 36)
+inventory = ExtResource("3_7ddre")
+ingredient_to_add = ExtResource("3_nd71p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Rock" parent="." instance=ExtResource("5_qjeyg")]
+position = Vector2(10, 8)
